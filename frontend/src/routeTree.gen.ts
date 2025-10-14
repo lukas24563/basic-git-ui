@@ -10,43 +10,53 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as TreeTreeIdSplatRouteImport } from './routes/tree/$treeId.$'
+import { Route as TreeBranchSplatRouteImport } from './routes/tree/$branch.$'
+import { Route as BlobBranchSplatRouteImport } from './routes/blob/$branch.$'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const TreeTreeIdSplatRoute = TreeTreeIdSplatRouteImport.update({
-  id: '/tree/$treeId/$',
-  path: '/tree/$treeId/$',
+const TreeBranchSplatRoute = TreeBranchSplatRouteImport.update({
+  id: '/tree/$branch/$',
+  path: '/tree/$branch/$',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlobBranchSplatRoute = BlobBranchSplatRouteImport.update({
+  id: '/blob/$branch/$',
+  path: '/blob/$branch/$',
   getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/tree/$treeId/$': typeof TreeTreeIdSplatRoute
+  '/blob/$branch/$': typeof BlobBranchSplatRoute
+  '/tree/$branch/$': typeof TreeBranchSplatRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/tree/$treeId/$': typeof TreeTreeIdSplatRoute
+  '/blob/$branch/$': typeof BlobBranchSplatRoute
+  '/tree/$branch/$': typeof TreeBranchSplatRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/tree/$treeId/$': typeof TreeTreeIdSplatRoute
+  '/blob/$branch/$': typeof BlobBranchSplatRoute
+  '/tree/$branch/$': typeof TreeBranchSplatRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/tree/$treeId/$'
+  fullPaths: '/' | '/blob/$branch/$' | '/tree/$branch/$'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/tree/$treeId/$'
-  id: '__root__' | '/' | '/tree/$treeId/$'
+  to: '/' | '/blob/$branch/$' | '/tree/$branch/$'
+  id: '__root__' | '/' | '/blob/$branch/$' | '/tree/$branch/$'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  TreeTreeIdSplatRoute: typeof TreeTreeIdSplatRoute
+  BlobBranchSplatRoute: typeof BlobBranchSplatRoute
+  TreeBranchSplatRoute: typeof TreeBranchSplatRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -58,11 +68,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/tree/$treeId/$': {
-      id: '/tree/$treeId/$'
-      path: '/tree/$treeId/$'
-      fullPath: '/tree/$treeId/$'
-      preLoaderRoute: typeof TreeTreeIdSplatRouteImport
+    '/tree/$branch/$': {
+      id: '/tree/$branch/$'
+      path: '/tree/$branch/$'
+      fullPath: '/tree/$branch/$'
+      preLoaderRoute: typeof TreeBranchSplatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blob/$branch/$': {
+      id: '/blob/$branch/$'
+      path: '/blob/$branch/$'
+      fullPath: '/blob/$branch/$'
+      preLoaderRoute: typeof BlobBranchSplatRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -70,7 +87,8 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  TreeTreeIdSplatRoute: TreeTreeIdSplatRoute,
+  BlobBranchSplatRoute: BlobBranchSplatRoute,
+  TreeBranchSplatRoute: TreeBranchSplatRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

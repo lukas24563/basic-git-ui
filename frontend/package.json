@@ -9,6 +9,8 @@
     "test": "vitest run"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^7.1.0",
+    "@monaco-editor/react": "^4.8.0-rc.1",
     "@tanstack/react-devtools": "^0.7.0",
     "@tanstack/react-router": "^1.132.0",
     "@tanstack/react-router-devtools": "^1.132.0",

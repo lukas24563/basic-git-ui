@@ -3,6 +3,8 @@ import { StrictMode } from "react";
 import ReactDOM from "react-dom/client";
 import { routeTree } from "./routeTree.gen";
 
+import "@fortawesome/fontawesome-free/css/fontawesome.css";
+import "@fortawesome/fontawesome-free/css/regular.css";
 import "primereact/resources/themes/lara-light-cyan/theme.css";
 import "./styles.css";
 
@@ -12,7 +14,8 @@ const router = createRouter({
   defaultPreload: "intent",
   scrollRestoration: true,
   defaultStructuralSharing: true,
-  defaultPreloadStaleTime: 0,
+  defaultPreloadStaleTime: 1000 * 60 * 5, // 5 minutes
+  defaultStaleTime: 1000 * 60 * 5, // 5 minutes
 });
 
 declare module "@tanstack/react-router" {
