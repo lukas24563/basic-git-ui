@@ -1,12 +1,13 @@
 import { API_URL } from "@/constants";
 import type { RepositoryInfo } from "@/types/repository-info";
 import { createRootRoute, Outlet } from "@tanstack/react-router";
+import Styles from "./__root.module.css";
 
 const RootComponent = () => {
   const data = Route.useLoaderData();
 
   return (
-    <div>
+    <div className={Styles.root}>
       <h1>{data.info.name}</h1>
       <Outlet />
     </div>

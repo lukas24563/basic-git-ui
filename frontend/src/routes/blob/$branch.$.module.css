@@ -1,3 +1,7 @@
+.wrapper {
+  flex-direction: column;
+}
+
 .editor {
-  height: 80vh;
+  flex-grow: 1;
 }

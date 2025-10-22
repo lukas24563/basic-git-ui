@@ -1,0 +1,44 @@
+.container {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  overflow: hidden;
+}
+
+.button {
+  margin-top: 1rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  margin-bottom: -100%;
+  transition: margin-bottom 0.5s ease-in-out;
+}
+
+.visible {
+  margin-bottom: 1rem;
+}
+
+.dialog {
+  min-width: 20rem;
+  min-height: 15rem;
+}
+
+.dialogContent {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding-top: 1.5rem;
+  margin-top: -1.5rem;
+}
+
+.dialogContent > span {
+  display: flex;
+}
+
+.dialogContent > span > input {
+  flex-grow: 1;
+}
+
+.divider {
+  margin-bottom: 0;
+}
