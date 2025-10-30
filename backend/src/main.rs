@@ -156,7 +156,7 @@ fn last_commit_for_path(
                 .map(|p| p.starts_with(path))
                 .unwrap_or(false)
             {
-                let message = commit.message().unwrap_or("").to_string();
+                let message = commit.summary().unwrap_or("").to_string();
                 let timestamp = commit.time().seconds().to_string();
                 let oid_str = oid.to_string();
                 return Some((message, timestamp, oid_str));
