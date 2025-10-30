@@ -1,0 +1,11 @@
+services:
+  backend:
+    build: ./backend
+    restart: unless-stopped
+    volumes:
+      - ./repos:/var/git
+  frontend:
+    build: ./frontend
+    restart: unless-stopped
+    ports:
+      - 8004:80
