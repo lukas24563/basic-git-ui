@@ -39,7 +39,7 @@ const BlobViewer = () => {
 
   const onPushChanges = async (details: CommitDetails) => {
     const response = await fetch(
-      `${API_URL}/blob/${params.branch}/${params._splat}`,
+      `${API_URL}/blob/${encodeURIComponent(params.branch)}/${params._splat}`,
       {
         method: "POST",
         headers: {
@@ -76,8 +76,8 @@ const BlobViewer = () => {
 export const Route = createFileRoute("/blob/$branch/$")({
   component: BlobViewer,
   loader: async ({ params }) => {
-    return fetch(`${API_URL}/blob/${params.branch}/${params._splat}`).then(
-      (res) => res.text()
-    );
+    return fetch(
+      `${API_URL}/blob/${encodeURIComponent(params.branch)}/${params._splat}`
+    ).then((res) => res.text());
   },
 });

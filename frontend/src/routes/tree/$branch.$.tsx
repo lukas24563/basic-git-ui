@@ -90,9 +90,10 @@ const FileViewer = () => {
 export const Route = createFileRoute("/tree/$branch/$")({
   component: FileViewer,
   loader: async ({ params }) => {
+    const branch_path = encodeURIComponent(params.branch);
     const path = !params._splat
-      ? params.branch
-      : `${params.branch}/${params._splat}`;
+      ? branch_path
+      : `${branch_path}/${params._splat}`;
 
     const files = (await fetch(`${API_URL}/tree/${path}`).then((res) =>
       res.json()
