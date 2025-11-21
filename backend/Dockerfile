@@ -11,7 +11,7 @@ RUN mkdir src \
   && echo "// dummy file" > src/lib.rs \
   && cargo build
 
-COPY . .
+COPY src src
 
 RUN cargo build --release
 
@@ -23,6 +23,6 @@ WORKDIR /backend
 COPY start.sh .
 RUN chmod +x start.sh
 
-COPY --from=build /backend/target/release/basic-git-ui .
+COPY --from=build /backend/target/release/basic_git_ui .
 
 ENTRYPOINT ["./start.sh"]
